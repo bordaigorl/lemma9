@@ -13,14 +13,15 @@ now called "Absorption Lemma".
 - Felix M. Stutz (fstutz@mpi-inf.mpg.de)
 
 
-**How to install**
+**How to install and run benchmarks**
+
 We recommend the following steps using *pip* for *Python 2.7* after cloning and entering the repository:
 
 * `# pip install virtualenv` to install the tool to build a virtual environment
 * `# virtualenv venv` to build an environment called venv
 * `# source venv/bin/activate` to activate it
 * `# pip install enum pytest antlr4-python2-runtime z3-solver` to install the required packages
-* `# cd /tests` and `# pytest test_Timing.py`
+* `# cd tests/` and `# pytest test_Timing.py` (might take approximately 15 minutes with a similar setup)
 
 
 
