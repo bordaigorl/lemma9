@@ -1,0 +1,20 @@
+S1[x, y, kxs, kys] := in(nx, ny : (x, (y, ({(nx, y)}_kxs, {(ny, x)}_kys)))).((new k.(<{(nx, (y, (k, {(k, (x, ny))}_kys)))}_kxs>)) || S1[x, y, kxs, kys]);
+A0[x, y, kxs]      := in().(<x> || A1[x, y, kxs] || A0[x, y, kxs]);
+A1[x, y, kxs]      := in().(new nx.(<x> || <y> || <{(nx, y)}_kxs> || A2[x, y, kxs, nx]));
+A2[x, y, kxs, nx]  := in(m, k : {(nx, (y, (k, m)))}_kxs ).(<m> || A3[x, y, kxs ,k]);
+A3[x, y, kxs, k]   := in((s : size 1) : {s}_k).(<{(s, s)}_k>);
+B0[x, y, kys]      := in(x).(new nys.(<{(nys, x)}_kys> || B1[x, y, kys, nys] || B0[x, y, kys])) + in(x).(new nyl.(<{(nyl, x)}_kys> || C1[x, y, kys, nyl] || B0[x, y, kys]));
+B1[x, y, kys, nys] := in(k : {(k, (x, nys))}_kys).((new s.(<{s}_k> || B2[x, y, kys, k, s])));
+C1[x, y, kys, nyl] := in(k : {(k, (x, nyl))}_kys).((new s.(<{s}_k> || C2[x, y, kys, k, s])));
+B2[x, y, kys, k, s]:= in({(s, s)}_k).(Secret[s]);
+C2[x, y, kys, k, s]:= in({(s, s)}_k).(<k>);
+
+K4 = new s.( <{s}_k> || <{(s, s)}_k> || B2[a, b, kbs, k, s] || Secret[s]^w );
+L4 = new s.( <{s}_k> || <{(s, s)}_k> || C2[a, b, kbs, k, s] );
+K3 = new k.( <{(nx, (b, (k, {(k, (a, nys))}_kbs)))}_kas> || <{(k, (a, nys))}_kbs> || A3[a, b, kas, k]^w || K4^w );
+L3 = new k.( <{(nx, (b, (k, {(k, (a, nyl))}_kbs)))}_kas> || <{(k, (a, nyl))}_kbs> || <k> || A3[a, b, kas, k]^w || L4^w );
+K2 = new nys.( <{(nys, a)}_kbs> || B1[a, b, kbs, nys] || K3^w );
+L2 = new nyl.( <{(nyl, a)}_kbs> || C1[a, b, kbs, nyl] || L3^w );
+Z = new nx.( <{(nx, b)}_kas> || A2[a, b, kas, nx] || K2^w || L2^w);
+
+(new a, b, kas, kbs.(<(a,b)> || B0[a, b, kbs]^w || A0[a, b, kas]^w || S1[a, b, kas, kbs]^w || A1[a, b, kas]^w || Z^w))^w

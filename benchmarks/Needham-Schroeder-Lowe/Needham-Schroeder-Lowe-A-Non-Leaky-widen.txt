@@ -1,0 +1,14 @@
+#global a b kas kbs;
+
+S1[x, y, kxs, kys] := in(nx, nz : (x, (y, ({(nx, kxs)}_kxs, {(nz, x)}_kys)))).((new k.(<{(nx, (y, (k, {(k, (x, nz))}_kys)))}_kxs>)) || S1[x, y, kxs, kys]);
+A0[x, y, kxs]      := in().(<x> || A1[x, y, kxs] || A0[x, y, kxs]);
+A1[x, y, kxs]      := in().(new nx.(<x> || <y> || <{(nx, kxs)}_kxs> || A2[x, y, kxs, nx]));
+A2[x, y, kxs, nx]  := in(m, k : {(nx, (y, (k, m)))}_kxs ).(<m> || A3[x, y, kxs ,k]);
+A3[x, y, kxs, k]   := in(s : {s}_k).(<{s}_(k, k)>);
+B0[x, y, kys]      := in(x).(new nzs.(<{(nzs, x)}_kys> || B1[x, y, kys, nzs] || B0[x, y, kys]));
+B1[x, y, kys, nzs] := in(k : {(k, (x, nzs))}_kys).((new s.(<{s}_k> || B2[x, y, kys, k, s])));
+C1[x, y, kys, nzl] := in(k : {(k, (x, nzl))}_kys).((new s.(<{s}_k> || C2[x, y, kys, k, s])));
+B2[x, y, kys, k, s]:= in({s}_(k, k)).(Secret[s]);
+C2[x, y, kys, k, s]:= in({s}_(k, k)).(<k>);
+
+S1[a, b, kas, kbs]^w || A0[a, b, kas]^w || B0[a, b, kbs]^w

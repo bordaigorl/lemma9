@@ -1,0 +1,15 @@
+#global a b kas kbs;
+
+S1[x, y, kxs, kys] := in((nx : size 1): ((x, y), nx)).((new k.(<{(nx, (y, (k, {(k, x)}_kys)))}_kxs>)) || S1[x, y, kxs, kys]);
+A1[x, y, kxs]      := in().(new n.(<((x, y), n)> || A2[x, y, kxs, n] || A1[x, y, kxs]));
+A2[x, y, kxs, n]   := in(m, k : {(n, (y, (k, m)))}_kxs ).(<m> || A3[x, y, kxs ,k]);
+A3[x, y, kxs, k]   := in((s : size 1) : {s}_k).(<{(s, s)}_k>);
+B1[x, y, kys]      := in(k : {(k, x)}_kys).((new s.(Secret[s] || <{s}_k> || B2[x, y, kys, k, s])) || B1 [x, y, kys]);
+B2[x, y, kys, k, s]:= in({(s, s)}_k).(STOP);
+
+G  = (new k.(<{(a, (b, (k, {(k, a)}_kbs)))}_kas>))^w || (new k.(<{(b, (b, (k, {(k, a)}_kbs)))}_kas>))^w;
+L4 = new s.(<({s}_k, {(s, s)}_k)> || Secret[s] || B2[a, b, kbs, k, s]);
+L3 = new k.(<({(n, (b, (k, {(k, a)}_kbs)))}_kas, {(k, a)}_kbs)> || A3[a, b, kas, k]^w || L4^w);
+L2 = new n.(<n> || A2[a, b, kas, n] || L3^w);
+
+S1[a, b, kas, kbs]^w || A1[a, b, kas]^w || B1[a, b, kbs]^w || <(a, b)> || G || L2^w

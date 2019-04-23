@@ -1,0 +1,9 @@
+#global a b kas kbs;
+
+S1[x, y, kxs, kys] := in(nx, ny: (y, {(x, (nx, ny))}_kys)).(new kxy.(<({(y, (kxy, (nx, ny)))}_kxs, {(x, kxy)}_kys)> || S1[x, y, kxs, kys]));
+A1[x, y, kxs] := in().(new nx.(<(x, nx)> || A2[nx, x, y, kxs] || A1[x, y, kxs]));
+A2[nx, x, y, kxs] := in(kxy, ny : {(y, (kxy, (nx, ny)))}_kxs).(<{ny}_kxy>);
+B1[x, y, kys] := in((nx : size 1): (x, nx)).(new ny.(<(y, {(x, (nx, ny))}_kys)> || B2[ny, x, y, kys] || B1[x, y, kys]));
+B2[ny, x, y, kys] := in(kxy : {(x, kxy)}_kys).(<{ny}_kxy>);
+
+S1[a, b, kas, kbs] || A1[a, b, kas] || B1[a, b, kbs]

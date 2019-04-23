@@ -1,0 +1,23 @@
+#global a b kas kbs kbb;
+
+S1[x, y, kxs, kys]         := in(nx, ny : ({(nx, y)}_kxs, {(ny, x)}_kys)).(new kxy.(<{(x, (ny , kxy))}_kys> || <{(nx, (y, kxy))}_kxs> || S1[x, y, kxs, kys]));
+A1[x, y, kxs]              := in().(new nx.(<x> || <nx> || <{(nx, y)}_kxs> || A2[x, y, kxs, nx] || A1[x, y, kxs]));
+A2[x, y, kxs, nx]          := in(kxy : {(nx, (y, kxy))}_kxs).(D2[x, y, kxs, nx, kxy]);
+D2[x, y, kxs, nx, kxy]     := in(nz : {(nz, nx)}_kxy).(<{(nx, nz)}_kxy> || A3[x, y, kxs, kxy]);
+A3[x, y, kxs, kxy]         := in().(new mx.(<{mx}_kxy> || A4[x, y, kxs, kxy, mx]));
+A4[x, y, kxs, kxy, mx]     := in(my : {(mx, my)}_kxy).(<{(my, mx)}_kxy> || A3[x, y, kxs, kxy]);
+B1[x, y, kyy, kys]         := in((nx : size 1) : (nx, x)).(new ny.(<y> || <{(ny, x)}_kys> || B2[x, y, kyy, kys, nx, ny] || B1[x, y, kyy, kys]));
+B2[x, y, kyy, kys, nx, ny] := in(kxy : {(x, (ny , kxy))}_kys).(new ty, nz.(<{(ty, (x, kxy))}_kyy> || <{(nz, nx)}_kxy> || B3[x, y, kyy, kys, nx, nz, kxy, ty]));
+B3[x, y, kyy, kys, nx, nz, kxy, ty] := in({(nx, nz)}_kxy).(Secret[nz] || B4[x, y, kyy, kys, kxy, ty]);
+B4[x, y, kyy, kys, kxy, ty]:= in((mx : size 1): ({mx}_kxy, {(ty, (x, kxy))}_kyy)).(new my.(<{(mx, my)}_kxy> || B5[x, y, kyy, kys, kxy, ty, mx, my]));
+B5[x, y, kyy, kys, kxy, ty, mx, my]:= in({(my, mx)}_kxy).(B4[x, y, kyy, kys, kxy, ty]);
+
+L7 = new my.( <{(my, mx)}_kxy> || <{(mx, my)}_kxy> || B5[a, b, kbb, kbs, kxy, ty, mx, my]);
+L6 = new mx.( <{mx}_kxy> || A4[a, b, kas, kxy, mx] || L7^w );
+L5 = ( B3[a, b, kbb, kbs, nx, nz, kxy, ty] || B4[a, b, kbb, kbs, kxy, ty]^w || B3[a, b, kbb, kbs, a, nz, kxy, ty] || B3[a, b, kbb, kbs, b, nz, kxy, ty] || L6^w);
+L4 = new ty, nz.( Secret[nz]^w || <{(ty, (a, kxy))}_kbb> || <{(nz, b)}_kxy> || <{(nz, a)}_kxy> || <{(nz, nx)}_kxy> || <{(nx, nz)}_kxy> || L5 );
+L3 = new kxy.( <{(nx, (b, kxy))}_kas> || <{(a, (ny, kxy))}_kbs> || <{(b, a)}_kxy> || <{(b, nx)}_kxy> || <{(nx, b)}_kxy> || <{(b, b)}_kxy> || D2[a, b, kas, nx, kxy]^w || A3[a, b, kas, kxy]^w || L4^w );
+L2 = new ny.( <{(ny, a)}_kbs> || B2[a, b, kbb, kbs, a, ny] || B2[a, b, kbb, kbs, b, ny] || B2[a, b, kbb, kbs, nx, ny] || L3^w );
+L1 = new nx.( <{(nx, b)}_kas> || <nx> || A2[a, b, kas, nx] || L2^w );
+
+( <a> || <b> || A1[a, b, kas]^w || B1[a, b, kbb, kbs]^w || S1[a, b, kas, kbs]^w || L1^w )
