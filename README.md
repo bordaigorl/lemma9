@@ -21,7 +21,7 @@ We recommend the following steps using *pip* for *Python 2.7* after cloning and 
 * `# virtualenv venv` to build an environment called venv
 * `# source venv/bin/activate` to activate it
 * `# pip install enum pytest antlr4-python2-runtime z3-solver` to install the required packages
-* `# cd tests/` and `# pytest test_Timing.py` (might take approximately 15 minutes with a similar setup)
+* `# cd tests/` and `# pytest -s test_Timing.py` (might take approximately 15 minutes with a similar setup)
 
 
 
