@@ -1,10 +1,10 @@
 #global a b kas kbs;
 
 S1[x, y, kxs, kys]    := in((nx : size 1) : (nx, y)).(new k.(<{k}_(nx, kxs)> || <{k}_kys> || S1[x, y, kxs, kys]));
-A1[x, y, kxs]         := in().(new nx.(<(nx, y)> || A2[x, y, kxs, nx]));
+A1[x, y, kxs]         := in().(new nx.(<(nx, y)> || A2[x, y, kxs, nx] || A1[x, y, kxs]));
 A2[x, y, kxs, nx]     := in(k : {k}_(nx, kxs)).(A3[x, y, kxs, k]);
 A3[x, y, kxs, k]      := in(ny : {ny}_k).(<{ny}_(k, k)>);
-B1[x, y, kys]         := in(m, k : (m, {k}_kys)).(new ny.(<m> || <{ny}_k> || B2[x, y, kys, ny, k]));
+B1[x, y, kys]         := in(m, k : (m, {k}_kys)).(new ny.(<m> || <{ny}_k> || B2[x, y, kys, ny, k] || B1[x, y, kys]));
 B2[x, y, kys, ny, k]  := in({ny}_(k, k)).(Secret[k]);
 
 L3 = new ny.( <{ny}_k> || <{ny}_(k, k)> || B2[a, b, kbs, ny, k] );
