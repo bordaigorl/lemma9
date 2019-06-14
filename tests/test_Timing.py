@@ -1,7 +1,7 @@
 from Timing import *
 from collections import OrderedDict
 
-prefix = "../benchmarks/"
+prefix = "benchmarks/"
 
 
 def test_get_benchmark_times():
@@ -10,7 +10,7 @@ def test_get_benchmark_times():
     pairs = OrderedDict({
             "ARPC":
                 ("Andrew-Secure-RPC/Andrew-RPC-1-widen.txt",
-                 "Andrew-Secure-RPC/Andrew-RPC-2-invariant.txt", 
+                 "Andrew-Secure-RPC/Andrew-RPC-2-invariant.txt",
                  "secret", "F"),
             "KSL":
                 ("Kehne-Schoenwaelder-Landendoerfer/KSL-1-without-reauth-widen.txt",
