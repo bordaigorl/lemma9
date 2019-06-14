@@ -12,16 +12,61 @@ now called "Absorption Lemma".
 - Emanuele D'Osualdo (e.dosualdo@ic.ac.uk)
 - Felix M. Stutz (fstutz@mpi-inf.mpg.de)
 
+## Reproducing the results
 
-**How to install and run benchmarks**
+The benchmark models can be found in `benchmarks`.
 
-We recommend the following steps using *pip* for *Python 2.7* after cloning and entering the repository:
+To reproduce the results on the benchmarks, first you need to install all the dependencies as explained in the next section.
+Then by running `pytest -s tests/test_Timing.py` from the root directory
+the solver will check each benchmark and produce a table of timings and results.
 
-* `# pip install virtualenv` to install the tool to build a virtual environment
-* `# virtualenv venv` to build an environment called venv
-* `# source venv/bin/activate` to activate it
-* `# pip install enum pytest antlr4-python2-runtime z3-solver` to install the required packages
-* `# cd tests/` and `# pytest -s test_Timing.py` (might take approximately 15 minutes with a similar setup)
+Running the tests to completion takes approximately 15 minutes on a standard laptop.
+To select a subset of the benchmarks for testing, open `tests/test_Timing.py`
+and comment the entries of the benchmarks you want to exclude in the main ordered dictionary, then run `pytest -s tests/test_Timing.py` from the root directory.
 
+## How to install and run benchmarks
 
+The program is written in **Python 2.7**.
+We recommend using [`pyenv`][pyenv] and `pip` to setup the right environment and install dependencies, as follows.
 
+### Installing with `pyenv`
+
+```bash
+# ASSUMES this repo has been cloned into "lemma9"
+cd lemma9
+# OPTIONAL STEPS
+pyenv virtualenv lemma9 # creates a new "lemma9" virtualenv
+pyenv local lemma9      # sets virtualenv for this project
+pyenv activate lemma9   # activate virtualenv
+# END OPTIONAL STEPS
+# Install the dependencies:
+pip install -r requirements.txt
+# Run the tests displaying the results table:
+pytest -s tests/test_Timing.py
+```
+
+### Installing with `virtualenv`
+
+If you don't like [`pyenv`][pyenv] you can use `virtualenv` directly:
+
+```bash
+# If virtualenv is not installed:
+pip install virtualenv
+pip virtualenv venv # create new virtualenv in venv
+source venv/bin/activate
+# Install the dependencies:
+pip install -r requirements.txt
+# Run the tests displaying the results table:
+pytest -s tests/test_Timing.py
+```
+
+### Installing globally
+
+If you don't like `virtualenv` either, you can always install the dependencies globally and, provided there is no dependency conflict, run the tests:
+
+```bash
+pip install -r requirements.txt
+pytest -s tests/test_Timing.py
+```
+
+[pyenv]: https://github.com/pyenv/pyenv#table-of-contents
