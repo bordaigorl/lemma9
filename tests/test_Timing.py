@@ -3,7 +3,6 @@ from collections import OrderedDict
 
 prefix = "benchmarks/"
 
-
 def test_get_benchmark_times():
     # Change here to adjust number of samples
     num_samples = 1
@@ -24,11 +23,14 @@ def test_get_benchmark_times():
                 ("Needham-Schroeder/Needham-Schroeder-1-widen.txt",
                  "Needham-Schroeder/Needham-Schroeder-2-invariant.txt",
                  "not modelled", "F"),
-            "NHSL":
-                (("Needham-Schroeder-Lowe/Needham-Schroeder-Lowe-A-Non-Leaky-widen.txt",
-                  "Needham-Schroeder-Lowe/Needham-Schroeder-Lowe-B-Leaky-widen.txt"),
-                 "Needham-Schroeder-Lowe/Needham-Schroeder-Lowe-A+B-merged-invariant.txt",
-                 "secret", "I"),
+            "NHSs":
+                ("Needham-Schroeder/Needham-Schroeder-Secret-1-widen.txt",
+                 "Needham-Schroeder/Needham-Schroeder-Secret-2-invariant.txt",
+                 "secret", "F"),
+            "NHSr":
+                ("Needham-Schroeder/Needham-Schroeder-Replay-1-widen.txt", #TODO: exclude somehow
+                 "Needham-Schroeder/Needham-Schroeder-Replay-2-invariant.txt",
+                 "leaky", "I"),
             "OR":
                 ("Otway-Rees/Otway-Rees-CSF-1-widen.txt",
                  "Otway-Rees/Otway-Rees-CSF-2-invariant.txt",
@@ -53,11 +55,17 @@ def test_get_benchmark_times():
                  "Yahalom/Yahalom-Secret-ny-not-leaked-2-invariant.txt", "secret", "F"),
             "YAHs2":
                 ("Yahalom/Yahalom-Secret-size-key-1-widen.txt",
-                 "Yahalom/Yahalom-Secret-size-key-2-invariant.txt", "secret", "F")
+                 "Yahalom/Yahalom-Secret-size-key-2-invariant.txt", "secret", "F"),
+            "YAHlk":
+                (("Yahalom/Yahalom-Leaked-Key-Variant-1-Non-Leaky-widen.txt",
+                 "Yahalom/Yahalom-Leaked-Key-Variant-1-Leaky-widen.txt"),
+                 "Yahalom/Yahalom-Leaked-Key-Variant-2-A+B-merged-invariant.txt",
+                 "secret", "I")
     })
     results = "\nName \t\tInfer \t\tC \t\tS \n"
     for (name, (fws, fi, model, how)) in pairs.iteritems():
         results += name + "\t\t"
+        print name
         result_w = 0
         if isinstance(fws, tuple):
             for fw in fws:

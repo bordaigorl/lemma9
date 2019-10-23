@@ -361,8 +361,8 @@ class Limit:
         sublimitdefs = []
         sublimitdefs, limit_repr = self.print_with_helper_defs_aux_tex(IdentifierManager(1), sublimitdefs)
         sublimitdefs_repr = "; \\\\ \n".join(sld for sld in sublimitdefs)
-        return '\\[ \n\\begin{array}{lcl} \n' + \
-               sublimitdefs_repr + "; \n\\end{array} \n\\] \n" +\
+        return '\\[ \n\\begin{align*} \n' + \
+               sublimitdefs_repr + "; \n\\end{align*} \n\\] \n" +\
                "\\[\n" + limit_repr + '\n\\]'
 
     def print_with_helper_defs_aux_tex(self, ident_man, sublimitdefs):

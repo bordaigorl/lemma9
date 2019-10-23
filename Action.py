@@ -27,7 +27,7 @@ class Action:
             reduce_knowledge(pattern_to_red)
             variables_to_remove = set()
             for v in inputprefix.variables:
-                if v in continuation_copy.messages:
+                if v in continuation_copy.messages and v in pattern_to_red:
                     # check whether it is used somewhere else
                     continuation_copy.messages.remove(v) # need to delete to check but add if not ow.
                     if v not in continuation_copy.get_variables():

@@ -6,9 +6,9 @@ B1[x, y, kys]         := in(m, k : (m, {k}_kys)).(new ny.(<m> || <{ny}_k> || B2[
 B2[x, y, kys, ny, k]  := in({ny}_(k, k)).(Secret[k]);
 
 L3 = new ny.( <{ny}_k> || <{ny}_(k, k)> || B2[a, b, kbs, ny, k] );
-L2 = new k.( <{k}_kbs> || <{k}_(na, kas)> || <{k}_(b, kas)> || A3[a, b, kas, k]^w || Secret[k]^w || L3^w );
-L1 = new na.( <na> || A2[a, b, kas, na] || L2^w );
+L2 = new k.( <{k}_kbs> || <{k}_(a, kas)> || <{k}_(b, kas)> || <{k}_(nx, kas)> || A3[a, b, kas, k]^w || Secret[k]^w || L3^w );
+L1 = new nx.( <nx> || A2[a, b, kas, nx] || L2^w );
 
-(new a, b, kas, kbs.( <b> || B1[a, b, kbs] || A1[a, b, kas] || S1[a, b, kas, kbs]^w || L1^w ))^w
+(new a, b, kas, kbs.( <b> || <a> || A1[a, b, kas]^w || S1[a, b, kas, kbs]^w || B1[a, b, kbs]^w || L1^w ))^w
 
 // version without global names

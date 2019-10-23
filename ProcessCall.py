@@ -50,7 +50,7 @@ class ProcessCall:
             raise Exception('Process call should always have at least one letter')
         if numbers is None:
             return str(letters) + str(replist)
-        return str(letters) + '_{' + numbers + '}' + str(replist)
+        return '\p{' + str(letters) + '_{' + numbers + '}}' + str(replist)
 
     def get_label(self):
         return self.label
