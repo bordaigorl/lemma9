@@ -49,7 +49,7 @@ def prohibit_old_model(matching, theta):
 
 def check_inclusion_of_continuation(limit, continuation, proccall, intruders_used):
     if isinstance(continuation, StopProcess):
-        return True
+        return None
     else:
         # compose continuation with messages for left side
         left = Limit(set(), deepcopy(limit.messages), [], [continuation], [], [])

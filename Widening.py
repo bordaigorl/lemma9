@@ -54,7 +54,7 @@ def widen_by_contis_of_one_proc(limit, name_repr_man):
         error_found = True
         continuation_newnames_chosen = continuation_list_one_proccall[0].newnames
         i = 0
-        while len(continuation_newnames_chosen) > 1:
+        while (len(continuation_newnames_chosen) > 1) and (len(continuation_list_one_proccall) > i + 1):
             i += 1
             continuation_newnames_chosen = continuation_list_one_proccall[i].newnames
     for conti in continuation_list_one_proccall:

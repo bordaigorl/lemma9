@@ -3,7 +3,7 @@ from parser.InputParser import get_program_from_file_input
 import time
 
 
-def time_widening_sampling(filename, c=2, expected=True):
+def time_widening_sampling(filename, c=1, expected=True):
     if c == 0:
         raise Exception('Cannot sample 0 times')
     time_sum = 0
