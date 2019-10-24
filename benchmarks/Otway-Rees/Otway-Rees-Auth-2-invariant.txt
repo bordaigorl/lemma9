@@ -1,0 +1,24 @@
+#global a b kas kbs i;
+
+S1[x, y, kxs, kys] := in(m, nx, ny : (m, (x, (y, ({(nx, (m, (x, y)))}_kxs, {(ny, (m, (x, y)))}_kys))))).(new kxy.(<(m, ({(nx , kxy)}_kxs, {(ny, kxy)}_kys))> || S1[x, y, kxs, kys]));
+A1[x, y, kxs] := in().(new m.(<(m, (x, y))> || C1[x, y, m, kxs] || A1[x, y, kxs]));
+C1[x, y, m, kxs] := in().(new nx.(<{(nx, (m, (x, y)))}_kxs> || A2[m, nx, kxs]));
+A2[m, nx, kxs] := in(kxy : (m, {(nx, kxy)}_kxs)).(STOP);
+B1[x, y, kys] := in((m : size 1) : (m, (x, y))).(new ny.(<(x, (y, {(ny, (m, (x, y)))}_kys))> || B2[x, y, ny, kys] || B1[x, y, kys]));
+B2[x, y, ny, kys] := in(kxy : {(ny, kxy)}_kys).(A[y, x, kxy]);
+A[d,e,f] := in().(STOP);
+I[j, y] := in((d : size 1) : (d, (d, y))).(A[j, y, (d, (d, y))]);
+
+L6 = ( A[i, b, (a, (a, b))]^w || A[i, b, (b, (b, b))]^w || A[i, b, (m, (m, b))]^w );
+L1 = new ny.( <{(ny, (a, (a, b)))}_kbs> || <{(ny, (b, (a, b)))}_kbs> || <{(ny, (ny, (a, b)))}_kbs> || B2[a, b, ny, kbs] || A[b, a, (ny, (a, b))]^w );
+L5 = new kxy.( <{(nx, kxy)}_kas> || <{(ny, kxy)}_kbs> || A[b, a, kxy]^w || A[i, b, kxy]^w );
+L4 = new nx.( <{(nx, (m, (a, b)))}_kas> || A2[m, nx, kas] || L5^w );
+L3 = new ny.( <{(ny, (m, (a, b)))}_kbs> || B2[a, b, ny, kbs] || L4^w );
+L2 = new m.( <m> || C1[a, b, m, kas] || A[b, a, (m, (a, b))]^w || A[b, a, (m, (a, b))]^w || L3^w );
+
+( <a> || <b> || <b> || <a> || B1[a, b, kbs]^w || A1[a, b, kas]^w || A[b, a, (a, (a, b))]^w || A[b, a, (b, (a, b))]^w || S1[a, b, kas, kbs]^w || B1[a, b, kbs]^w || A1[a, b, kas]^w || L1^w || L2^w )
+
+// mis-authentification based on a well-known attack on the protocol
+// augmented widened version
+// A[-] models the authentification process call as described in the paper
+// I[-] models an intruder who is aware of the pattern which can also be used for pattern matching

@@ -1,0 +1,16 @@
+#global a b kas kbs;
+
+S1[x, y, kxs, kys] := in(m, nx, ny : (m, (x, (y, ({(nx, (m, (x, y)))}_kxs, {(ny, (m, (x, y)))}_kys))))).(new kxy.(<(m, ({(nx , kxy)}_kxs, {(ny, kxy)}_kys))> || S1[x, y, kxs, kys]));
+A1[x, y, kxs] := in().(new m.(<(m, (x, y))> || C1[x, y, m, kxs] || A1[x, y, kxs]));
+C1[x, y, m, kxs] := in().(new nx.(<{(nx, (m, (x, y)))}_kxs> || A2[m, nx, kxs]));
+A2[m, nx, kxs] := in(kxy : (m, {(nx, kxy)}_kxs)).(STOP);
+B1[x, y, kys] := in((m : size 1) : (m, (x, y))).(new ny.(<(x, (y, {(ny, (m, (x, y)))}_kys))> || B2[x, y, ny, kys] || B1[x, y, kys]));
+B2[x, y, ny, kys] := in(kxy : {(ny, kxy)}_kys).(A[y, x, kxy]);
+A[d,e,f] := in().(STOP);
+// I[j, y] := in((d : size 1) : (d, (d, y))).(A[j, y, (d, (d, y))]);
+
+( <a> || <b> || A1[a, b, kas]^w || B1[a, b, kbs]^w || S1[a, b, kas, kbs]^w )
+
+// A[-] models the authentification process call as described in the paper
+// widening currently needs interaction with this instance of an intruder,
+// widened version is still invariant for this encoding
