@@ -5,7 +5,7 @@ prefix = "benchmarks/"
 
 def test_get_benchmark_times():
     # Change here to adjust number of samples; benchmarks taken with num_samples = 10
-    num_samples = 1
+    num_samples = 10
     pairs = OrderedDict({
              "ARPC":
                  ("Andrew-Secure-RPC/Andrew-RPC-1-widen.txt", True,
@@ -61,22 +61,22 @@ def test_get_benchmark_times():
                  ("Yahalom/Yahalom-Secret-size-key-1-widen.txt", True,
                   "Yahalom/Yahalom-Secret-size-key-2-invariant.txt", "secret", "F"),
              "YAHlk":
-                 ((("Yahalom/Yahalom-Leaked-Key-Variant-1-Non-Leaky-widen.txt", True),
-                  ("Yahalom/Yahalom-Leaked-Key-Variant-1-Leaky-widen.txt", True)),
+                 (("Yahalom/Yahalom-Leaked-Key-Variant-1-Non-Leaky-widen.txt",
+                   "Yahalom/Yahalom-Leaked-Key-Variant-1-Leaky-widen.txt"),
+                   True,
                   "Yahalom/Yahalom-Leaked-Key-Variant-2-A+B-merged-invariant.txt",
                   "secret", "I")
     })
-    results = "\nName \t\tInfer \t\tC \t\tS \n"
+    results = "\nName \t\tInfer \tC \tS \n"
     for (name, (fws, fwe, fi, model, how)) in pairs.iteritems():
         results += name + "\t\t"
-        print name
         result_w = 0
         if isinstance(fws, tuple):
-            for (fw, fwe) in fws:
+            for fw in fws:
                 result_w += time_widening_sampling(prefix + fw, num_samples, fwe)
         else:
             result_w = time_widening_sampling(prefix + fws, num_samples, fwe)
         results += "%.1fs" % result_w + "\t" + how + "\t"
         result_i = time_inv_check_sampling(prefix + fi, num_samples)
-        results += "%.1fs" % result_i + " \t" + model + "\n"
+        results += "%.1fs" % result_i + "\t" + model + "\n"
     print results

@@ -1,14 +1,14 @@
-#global a b kas kbs;
+#global a b kas kbs zero one;
 
-S1[x, y, kxs, kys] := in(nx, nz : (x, (y, ({(nx, kxs)}_kxs, {(nz, x)}_kys)))).((new k.(<{(nx, (y, (k, {(k, (x, nz))}_kys)))}_kxs>)) || S1[x, y, kxs, kys]);
-A0[x, y, kxs]      := in().(<x> || A1[x, y, kxs] || A0[x, y, kxs]);
-A1[x, y, kxs]      := in().(new nx.(<x> || <y> || <{(nx, kxs)}_kxs> || A2[x, y, kxs, nx]));
-A2[x, y, kxs, nx]  := in(m, k : {(nx, (y, (k, m)))}_kxs ).(<m> || A3[x, y, kxs ,k]);
-A3[x, y, kxs, k]   := in((s : size 1) : {s}_k).(<{s}_(k, k)>);
-B0[x, y, kys]      := in(x).(new nzl.(<{(nzl, x)}_kys> || C1[x, y, kys, nzl] || B0[x, y, kys]));
-B1[x, y, kys, nzs] := in(k : {(k, (x, nzs))}_kys).((new s.(<{s}_k> || B2[x, y, kys, k, s])));
-C1[x, y, kys, nzl] := in(k : {(k, (x, nzl))}_kys).((new s.(<{s}_k> || C2[x, y, kys, k, s])));
-B2[x, y, kys, k, s]:= in({s}_(k, k)).(Secret[s]);
-C2[x, y, kys, k, s]:= in({s}_(k, k)).(<k>);
+S1[x, y, kxs, kys]            := in(nx, ny : (x, (y, ({(nx, y)}_kxs, {(ny, x)}_kys)))).((new k.(<{(nx, (y, (k, {(k, (x, ny))}_kys)))}_kxs>)) || S1[x, y, kxs, kys]);
+A0[x, y, kxs, zero, one]      := in().(<x> || A1[x, y, kxs, zero, one] || A0[x, y, kxs, zero, one]);
+A1[x, y, kxs, zero, one]      := in().(new nx.(<x> || <y> || <{(nx, y)}_kxs> || A2[x, y, kxs, nx, zero, one]));
+A2[x, y, kxs, nx, zero, one]  := in(m, k : {(nx, (y, (k, m)))}_kxs ).(<m> || A3[x, y, kxs, k, zero, one]);
+A3[x, y, kxs, k, zero, one]   := in((s : size 1) : {(zero, s)}_k).(<{(one, s)}_k>);
+B0[x, y, kys, zero, one]      := in(x).(new nyl.(<{(nyl, x)}_kys> || C1[x, y, kys, nyl, zero, one] || B0[x, y, kys, zero, one]));
+B1[x, y, kys, nys, zero, one] := in(k : {(k, (x, nys))}_kys).((new s.(<{(zero, s)}_k> || B2[x, y, kys, k, s, zero, one])));
+C1[x, y, kys, nyl, zero, one] := in(k : {(k, (x, nyl))}_kys).((new s.(<{(zero, s)}_k> || C2[x, y, kys, k, s, zero, one])));
+B2[x, y, kys, k, s, zero, one]:= in({(one, s)}_k).(Secret[s]);
+C2[x, y, kys, k, s, zero, one]:= in({(one, s)}_k).(<k>);
 
-S1[a, b, kas, kbs]^w || A0[a, b, kas]^w || B0[a, b, kbs]^w
+S1[a, b, kas, kbs]^w || A0[a, b, kas, zero, one]^w || B0[a, b, kbs, zero, one]^w

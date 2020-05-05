@@ -1,14 +1,14 @@
-#global a b kas kbs;
+#global a b kas kbs zero one;
 
-S1[x, y, kxs, kys] := in((nx : size 1): ((x, y), nx)).((new k.(<{(nx, (y, (k, {(k, x)}_kys)))}_kxs>)) || S1[x, y, kxs, kys]);
-A1[x, y, kxs]      := in().(new n.(<((x, y), n)> || A2[x, y, kxs, n] || A1[x, y, kxs]));
-A2[x, y, kxs, n]   := in(m, k : {(n, (y, (k, m)))}_kxs ).(<m> || A3[x, y, kxs ,k]);
-A3[x, y, kxs, k]   := in((s : size 1) : {s}_k).(<{(s, s)}_k>);
-B1[x, y, kys]      := in(k : {(k, x)}_kys).((new s.(<{s}_k> || B2[x, y, kys, k, s])) || B1 [x, y, kys]);
-B2[x, y, kys, k, s]:= in({(s, s)}_k).(STOP);
+S1[x, y, kxs, kys]          := in((nx : size 1): ((x, y), nx)).((new k.(<{(nx, (y, (k, {(k, x)}_kys)))}_kxs>)) || S1[x, y, kxs, kys]);
+A1[x, y, kxs, zero, one]    := in().(new n.(<((x, y), n)> || A2[x, y, kxs, n, zero, one] || A1[x, y, kxs, zero, one]));
+A2[x, y, kxs, n, zero, one] := in(m, k : {(n, (y, (k, m)))}_kxs ).(<m> || A3[x, y, kxs , k, zero, one]);
+A3[x, y, kxs, k, zero, one] := in(s : {(zero, s)}_k).(<{(one, s)}_k>);
+B1[x, y, kys, zero, one]    := in(k : {(k, x)}_kys).((new s.(<{(zero, s)}_k> || B2[x, y, kys, k, s, one])) || B1[x, y, kys, zero, one]);
+B2[x, y, kys, k, s, one]    := in({(one, s)}_k).(STOP);
 
-L3 = new s.( <{s}_k> || <{(s, s)}_k> || B2[a, b, kbs, k, s] );
-L2 = new k.( <{(a, (b, (k, {(k, a)}_kbs)))}_kas> || <{(b, (b, (k, {(k, a)}_kbs)))}_kas> || <{(n, (b, (k, {(k, a)}_kbs)))}_kas> || <{(k, a)}_kbs> || A3[a, b, kas, k]^w || L3^w );
-L1 = new n.( <n> || A2[a, b, kas, n] || L2^w );
+L3 = new s.( <{(zero, s)}_k> || <{(one, s)}_k> || B2[a, b, kbs, k, s, one] );
+L2 = new k.( <{(a, (b, (k, {(k, a)}_kbs)))}_kas> || <{(b, (b, (k, {(k, a)}_kbs)))}_kas> || <{(n, (b, (k, {(k, a)}_kbs)))}_kas> || <{(k, a)}_kbs> || A3[a, b, kas, k, zero, one]^w || L3^w );
+L1 = new n.( <n> || A2[a, b, kas, n, zero, one] || L2^w );
 
-( <(a, b)> || <a> || <b> || B1[a, b, kbs]^w || A1[a, b, kas]^w || S1[a, b, kas, kbs]^w || L1^w )
+( <(a, b)> || <a> || <b> || B1[a, b, kbs, zero, one]^w || A1[a, b, kas, zero, one]^w || S1[a, b, kas, kbs]^w || L1^w )

@@ -42,9 +42,10 @@ def widen_by_contis_of_one_proc(limit, name_repr_man):
             error_processcall_continuation[proccall].append(continuation)
     continuation_list_one_proccall = None
     for k in error_processcall_continuation.iterkeys():
-        initiating_proccall = k
         continuation_list_one_proccall =  error_processcall_continuation[k]
-        # break;
+        # here we have to prioritise tau-transitions
+        if Definition.definitions[k.label].actions[0].inputprefix.tau:
+            break
     # Merge errors from the same (processcall) continuation
     continuation_msgs = []
     continuation_pcs = []
