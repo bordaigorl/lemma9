@@ -5,7 +5,7 @@ prefix = "benchmarks/"
 
 def test_get_benchmark_times():
     # Change here to adjust number of samples; benchmarks taken with num_samples = 10
-    num_samples = 10
+    num_samples = 1
     pairs = OrderedDict({
              "ARPC":
                  ("Andrew-Secure-RPC/Andrew-RPC-1-widen.txt", True,
