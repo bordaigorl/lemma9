@@ -335,6 +335,9 @@ class Limit:
 
     def print_with_helper_defs(self):
         sublimitdefs = []
+        if ((len(self.messages)==0) & (len(self.newnames)==0) & \
+            (len(self.sublimits)==0) & (len(self.processcalls)==0) & (len(self.subprocesses)==1)):
+            return self.subprocesses[0].print_with_helper_defs()
         sublimitdefs, limit_repr = self.print_with_helper_defs_aux(IdentifierManager(1), sublimitdefs)
         sublimitdefs_repr = ";\n".join(sld for sld in sublimitdefs)
         return sublimitdefs_repr + ";\n\n" + limit_repr

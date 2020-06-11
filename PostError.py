@@ -21,8 +21,7 @@ class PostError:
     def __str__(self):
         # matched message can stay None if tau
         return 'Process Call ' + str(self.init_proccall) + '\n' + \
-               'was matched using the following substitution ' + self.get_str_repr_of_substitution() + '\n' + \
-               'resulting in the continuation ' + str(self.continuation) + '\n' + \
+               'has the following continuation ' + str(self.continuation) + '\n' + \
                'which does not seem to be included in this invariant: \n' + str(self.invariant_to_check) + '\n' + \
                'More verbose: \n \t Left \t' + str(self.left_side) + '\n' + \
                ' \t Right \t' + str(self.right_side) + '\n'
