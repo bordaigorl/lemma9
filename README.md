@@ -10,7 +10,7 @@ now called "Absorption Lemma".
 ## Contacts
 
 - Emanuele D'Osualdo (e.dosualdo@ic.ac.uk)
-- Felix M. Stutz (fstutz@mpi-inf.mpg.de)
+- Felix M. Stutz (fstutz@mpi-sws.org)
 
 ## Reproducing the results
 
