@@ -1,0 +1,11 @@
+#global a b kab;
+
+A1[x, y, kxy]        := in().(new nx.(<x> || <{nx}_kxy> || A2[x, y, kxy, nx]));
+A2[x, y, kxy, nx]    := in(k : {(nx, (k, y))}_kxy).(<{nx}_k>);
+B1[x, y, kxy]        := in((nx : size 1) : {nx}_kxy).(new k.(<{(nx, (k, y))}_kxy> || B2[x, y, kxy, nx, k]));
+B2[x, y, kxy, nx, k] := in({nx}_k).(Secret[k]);
+
+L2 = new k.( <{(nx, (k, b))}_kab> || <{nx}_k> || B2[a, b, kab, nx, k] || Secret[k]^w );
+L1 = new nx.( <{nx}_kab> || A2[a, b, kab, nx] || L2^w );
+
+( <a> || A1[a, b, kab] || B1[a, b, kab] || L1^w )

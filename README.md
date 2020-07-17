@@ -27,7 +27,9 @@ and comment the entries of the benchmarks you want to exclude in the main ordere
 ## How to install and run benchmarks
 
 The program is written in **Python 2.7**.
-We recommend using [`pyenv`][pyenv] and `pip` to setup the right environment and install dependencies, as follows.
+We recommend using [`pyenv`][pyenv] and `pip` to setup the right environment and install dependencies, as detailed below.
+A Dockerfile is provided and can be used to create a container running the tool with all the dependencies installed.
+For details on usage of the tool, please look at the `tutorial/TUTORIAL.md` file.
 
 ### Installing with `pyenv`
 

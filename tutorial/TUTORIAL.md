@@ -6,7 +6,8 @@ We assume that you installed the required packages and checked out the repositor
 
 ## Command Line Interface
 
-We assume all commands to be executed on the top folder of this repository.
+We assume all commands to be executed on the top folder of this repository
+(i.e. the folder enclosing this file).
 
 To run the tests on all the benchmarks and reproduce the results of the paper,
 you can run
@@ -18,11 +19,11 @@ pytest -s tests/test_Timing.py
 The tool can be run on individual models using the `lemma9.py` script which offers a convenient CLI:
 
 ```bash
-python lemma9.py [-h] path_to_model (-c | -i #iterations)
+python lemma9.py [-h] path_to_model (-c | -i N)
 ```
 where the option `-h` displays a help page, 
 `-c` invokes the check for inductivity of a provided candidate invariant, and
-`-i` attempts to infer an invariant with `#iterations` (15 was used for the benchmarks) iterations.
+`-i` attempts to infer an invariant with `N` (15 was used for the benchmarks) iterations.
 
 ## Protocol Models
 
@@ -117,7 +118,7 @@ The initial configuration `<a> || B1[a, b, kab] || A1[a, b, kab]` is a single pr
 If we run the tool in check mode with:
 
 ```
-python lemma9.py model-widen.pi -c
+python lemma9.py tutorial/model-widen.pi -c
 ```
 
 the tool will as expected complain: the initial term is not an inductive invariant.
@@ -125,7 +126,7 @@ the tool will as expected complain: the initial term is not an inductive invaria
 We then proceed to run the tool in inference mode:
 
 ```
-python lemma9.py model-widen.pi -i 5
+python lemma9.py tutorial/model-widen.pi -i 5
 ```
 
 We call the file with a `-widen` suffix to suggest that this file is meant to be fed to the inference mode.
@@ -158,7 +159,7 @@ We used the `-invariant` suffix in the filename to indicate that it should be fe
 Now if we run
 
 ```
-python lemma9.py model-invariant.pi -c
+python lemma9.py tutorial/model-invariant.pi -c
 ```
 
 the tool will indeed confirm the limit is inductive.
