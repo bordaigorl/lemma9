@@ -71,4 +71,21 @@ pip install -r requirements.txt
 pytest -s tests/test_Timing.py
 ```
 
+### Using Docker
+
+With Docker installed, you can build an image with
+
+    docker build -t lemma9 .
+
+from the root folder of the repo.
+Then you can run the benchmarks using
+
+    docker run lemma9
+
+If you want to experiment with Lemma9's CLI and tutorial, run
+
+    docker run -it --entrypoint /bin/bash lemma9
+
+which will give you an interactive shell within the container.
+
 [pyenv]: https://github.com/pyenv/pyenv#table-of-contents
