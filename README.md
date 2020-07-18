@@ -12,6 +12,9 @@ now called "Absorption Lemma".
 - Emanuele D'Osualdo (e.dosualdo@ic.ac.uk)
 - Felix M. Stutz (fstutz@mpi-sws.org)
 
+This work is licensed under a [Creative Commons Attribution 4.0 International License][cc].
+Please give proper attribution.
+
 ## Reproducing the results
 
 The benchmark models can be found in `benchmarks`.
@@ -88,4 +91,5 @@ If you want to experiment with Lemma9's CLI and tutorial, run
 
 which will give you an interactive shell within the container.
 
+[cc]: http://creativecommons.org/licenses/by/4.0/
 [pyenv]: https://github.com/pyenv/pyenv#table-of-contents
